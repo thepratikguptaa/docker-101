@@ -22,7 +22,7 @@ To run this application on your local machine, you'll need to have Node.js, npm,
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/your-username/docker-101.git
+    git clone https://github.com/thepratikguptaa/docker-101.git
     cd docker-101
     ```
 
