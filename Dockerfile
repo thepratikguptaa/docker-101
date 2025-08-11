@@ -1,10 +1,13 @@
-FROM node
+FROM node:18-alpine
 
-ENV MONGO_DB_USERNAME=admin \
-    MONGO_DB_PWD=qwerty
+WORKDIR /app
 
-RUN mkdir -p docker-101
+COPY package*.json ./
 
-COPY . /docker-101
+RUN npm install
+
+COPY . .
+
+EXPOSE 5050
 
 CMD ["node", "server.js"]
