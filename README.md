@@ -6,17 +6,17 @@ This project is a simple web application built with Node.js, Express, and MongoD
 
 The application provides a web interface with a signup form. Users can submit their email, username, and password, and the data will be stored in a MongoDB database.
 
-The primary goal of this project is to demonstrate how to containerize a Node.js application using Docker.
+The primary goal of this project is to demonstrate how to containerize a Node.js application using Docker and manage multi-container applications with Docker Compose.
 
 ## Getting Started
 
-To run this application on your local machine, you'll need to have Node.js, npm, and MongoDB installed.
+To run this application, you'll need to have Node.js, npm, and Docker installed.
 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
-- [MongoDB](https://www.mongodb.com/try/download/community)
+- [Docker](https://www.docker.com/products/docker-desktop/)
 
 ### Installation
 
@@ -33,36 +33,47 @@ To run this application on your local machine, you'll need to have Node.js, npm,
 
 ### Running the App
 
-1.  Make sure your MongoDB server is running.
+There are two ways to run the application:
 
-2.  Start the application:
+#### 1. Using Docker Compose (Recommended)
+
+This is the easiest way to get the application running with all its services.
+
+1.  Make sure Docker is running on your machine.
+
+2.  Run the following command in the project root:
+    ```bash
+    docker-compose up -d
+    ```
+
+This will start the Node.js application, a MongoDB database, and a Mongo Express instance for easy database management.
+
+-   The application will be available at [http://localhost:5050](http://localhost:5050).
+-   Mongo Express will be available at [http://localhost:8081](http://localhost:8081).
+
+To stop the application and all related services, run:
+```bash
+docker-compose down
+```
+
+#### 2. Running Locally (for Development)
+
+If you want to run the application without Docker, you'll need to have a local MongoDB instance running.
+
+1.  Make sure your local MongoDB server is running.
+
+2.  You will need to set the `MONGO_URL` environment variable. You can do this by creating a `.env` file in the root of the project with the following content:
+    ```
+    MONGO_URL=mongodb://admin:password@localhost:27017/docker101-db?authSource=admin
+    ```
+    Alternatively, you can set it in your terminal before running the app.
+
+3.  Start the application:
     ```bash
     node server.js
     ```
 
 The application will be available at [http://localhost:5050](http://localhost:5050).
-
-## Dockerization
-
-You can also run this application using Docker.
-
-### Building the Docker Image
-
-To build the Docker image, run the following command in the project's root directory:
-
-```bash
-docker build -t docker-101 .
-```
-
-### Running the Docker Container
-
-To run the Docker container, use the following command:
-
-```bash
-docker run -p 5050:5050 docker-101
-```
-
-This will start the application, and it will be accessible at [http://localhost:5050](http://localhost:5050).
 
 ## API Endpoints
 
