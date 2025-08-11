@@ -6,6 +6,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: qwerty
       MONGO_INITDB_ROOT_PASSWORD: qwerty
+    volumes:
+    - /Users/prati/Desktop/data:/data/db
+    networks:
+    - mongo-network
 
   mongo-express:
     image: mongo-express
